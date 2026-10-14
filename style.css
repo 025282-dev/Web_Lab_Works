@@ -75,3 +75,34 @@ th {
     color: #fff;
 }
 
+fieldset {
+    border: 1px solid #352b2b;
+    padding: 10px;
+    margin-bottom: 20px;
+
+legend {
+    font-weight: bold;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"],
+select,textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #352b2b;
+    border-radius: 4px;
+}   
+button {
+    background-color: #6521be;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}   
