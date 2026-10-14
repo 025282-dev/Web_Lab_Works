@@ -139,6 +139,13 @@ button {
         grid-template-columns: 3fr 1fr;
     }
 }
+
+main {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #352b2b;
+    border-radius: 5px;
+}
 .sidebar {
     background-color: #f5f5f5;
     padding: 15px;
@@ -172,7 +179,7 @@ margin-bottom: 10px;
     margin-top: 15px;
 }
 
-.main-footer {
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
