@@ -28,3 +28,40 @@ footer {
     padding: 8px;
     z-index: 100;
 }
+
+.skip-link:focus {
+    top: 0;
+}
+
+:focus-visible {
+    outline: 2px solid #6521be;
+    outline-offset: 2px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    background-color: #352b2b;
+    border-radius: 5px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+}
+
+nav a[aria-current="page"] {
+    background-color: #6521be;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
