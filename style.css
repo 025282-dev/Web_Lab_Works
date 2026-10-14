@@ -131,14 +131,15 @@ button {
     grid-template-columns: 1fr 300px;
     gap: 20px;
 }
+/*
 @media (max-width: 768px) {
     .page-container {
         grid-template-columns: 1fr;
     }
 }
-
+*/
 main {
-    mini-width: 0;
+    min-width: 0;
     background-color: #fff;
     padding: 15px;
     border: 1px solid #352b2b;
