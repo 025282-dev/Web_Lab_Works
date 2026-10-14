@@ -111,6 +111,7 @@ button {
 }   
 
 .checkbox-group {
+    display: flex;
     align-items: center;
     gap: 10px;
     margin-top: 10px;
@@ -123,7 +124,7 @@ button {
     cursor: pointer;
 }
 .checkbox-group label {
-    display:inline
+    display: inline;
     margin: 0;
     cursor: pointer;
 }
