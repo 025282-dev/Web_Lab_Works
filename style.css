@@ -171,3 +171,12 @@ margin-bottom: 10px;
     color: #6521be;
     margin-top: 15px;
 }
+
+.main-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+}
