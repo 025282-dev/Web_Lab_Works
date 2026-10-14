@@ -59,7 +59,7 @@ nav a[aria-current="page"] {
 }
 
 table {
-    width: 100%;
+    width: 75%;
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -93,7 +93,7 @@ label {
 input[type="text"],
 input[type="email"],
 select,textarea {
-    width: 100%;
+    width: 75%;
     padding: 8px;
     border: 1px solid #352b2b;
     border-radius: 4px;
