@@ -197,3 +197,24 @@ footer {
     border: 1px solid #352b2b;
     border-radius: 4px;
 }
+
+.logo {
+    padding: 0px;
+    display: flex;
+}
+imgheader,
+.logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    background-color: #352b2b;
+    border-radius: 5px;
+}
