@@ -211,11 +211,3 @@ imgheader,
     display: block;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 10px;
-    background-color: #352b2b;
-    border-radius: 5px;
-}
