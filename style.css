@@ -49,6 +49,7 @@ nav ul {
 nav a {
     color: #fff;
     text-decoration: none;
+    text-align: center;
     padding: 8px 12px;
     display: block;
 }
