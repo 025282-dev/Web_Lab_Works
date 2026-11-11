@@ -7,12 +7,12 @@ body {
     max-width: 2000px;
     margin: 40px auto;
     padding: 0 20px;
-    background-color: #d69b9b;
-    color: #333;
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
 }
 
 header {
-    border-bottom: 2px solid #352b2b;
+    border-bottom: 2px solid var(--color-border-primary);
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
@@ -22,8 +22,8 @@ header {
     position: absolute;
     top: -40px;
     left: 0;
-    background: #000;
-    color: #fff;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
     padding: 8px;
     z-index: 100;
 }
@@ -33,7 +33,7 @@ header {
 }
 
 :focus-visible {
-    outline: 2px solid #6521be;
+    outline: 2px solid var(--color-focus);
     outline-offset: 2px;
 }
 
@@ -42,12 +42,12 @@ nav ul {
     padding: 0;
     display: flex;
     gap: 10px;
-    background-color: #352b2b;
+    background-color: var(--color-bg-tertiary);
     border-radius: 5px;
 }
 
 nav a {
-    color: #fff;
+    color: var(--color-text-secondary);
     text-decoration: none;
     text-align: center;
     padding: 8px 12px;
@@ -55,7 +55,7 @@ nav a {
 }
 
 nav a[aria-current="page"] {
-    background-color: #6521be;
+    background-color: var(--color-bg-primary);
     border-radius: 5px;
 }
 
@@ -66,17 +66,17 @@ table {
 }
 
 th, td {
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     padding: 8px;
     text-align: left;
 }
 th {
-    background-color: #352b2b;
-    color: #fff;
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
 }
 
 fieldset {
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -96,12 +96,12 @@ input[type="email"],
 select,textarea {
     width: 75%;
     padding: 8px;
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
 }   
 button {
-    background-color: #6521be;
-    color: #fff;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     border: none;
     padding: 10px 15px;
     cursor: pointer;
@@ -179,15 +179,15 @@ button {
 
 main {
     min-width: 0;
-    background-color: #fff;
+    background-color: var(--color-bg-base);
     padding: 15px;
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     border-radius: 5px;
 }
 .sidebar {
-    background-color: #f5f5f5;
+    background-color: var(--color-bg-tertiary);
     padding: 15px;
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     border-radius: 5px;
 }
 
@@ -198,13 +198,13 @@ main {
     margin-top: 20px;
 }
 .card {
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--color-bg-base);
 }
 
 .card h2 {
@@ -214,7 +214,7 @@ margin-bottom: 10px;
 }
 .card .price {
     font-weight: bold;
-    color: #6521be;
+    color: var(--color-text-primary);
     margin-top: 15px;
 }
 
@@ -222,8 +222,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #020202;
-    color: #fff;
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
     padding: 10px;
     margin-top: 30px;
     font-size: 14px;
@@ -233,7 +233,7 @@ footer {
 .text-input { 
     width: 75%;
     padding: 8px;
-    border: 1px solid #352b2b;
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
 }
 
