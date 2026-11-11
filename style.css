@@ -133,9 +133,47 @@ button {
     gap: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    body {
+        margin: 15px auto;
+        padding: 0 10px;
+    }
+    nav ul {
+        flex-direction: column;
+    }
     .page-container {
         grid-template-columns: 1fr;
+    }
+    table,
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+        width: 100%; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-container {
+        grid-template-columns: 1fr; 
+    }
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    table,
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 85%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page-container {
+        grid-template-columns: 1fr 220px; 
+    }
+    .catalog-grid {
+        grid-template-columns: repeat(3, 1fr); 
     }
 }
 
