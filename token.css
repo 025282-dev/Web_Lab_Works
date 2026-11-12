@@ -83,3 +83,19 @@
   --color-border: #374151;
   --color-border-dark: #4b5563;
 }
+
+[data-theme="light"] {
+  --color-bg-base: #f8f9fa;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-alt: #f1f3f5;
+  --color-bg-header: #211c1d;
+  --color-bg-footer: #121212;
+  --color-text-primary: #212529;
+  --color-text-secondary: #495057;
+  --color-text-inverse: #ffffff;
+  --color-primary: #5b21b6;
+  --color-primary-hover: #4c1d95;
+  --color-primary-focus: #7c3aed;
+  --color-border: #dee2e6;
+  --color-border-dark: #352b2b;
+}
