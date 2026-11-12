@@ -245,3 +245,28 @@ imgheader,
     display: block;
 }
 
+.modal {
+    border: 2px solid var(--color-border-dark);
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 450px;
+    width: 90%;
+    background-color: var(--color-bg-surface);
+    color: var(--color-text-primary);
+}
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+.filter-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.status-msg {
+    padding: 15px;
+    font-weight: bold;
+}
+.status-error {
+    color: #d90429;
+    border: 1px solid #d90429;
+    border-radius: 5px;
+}
