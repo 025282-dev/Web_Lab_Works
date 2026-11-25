@@ -9,3 +9,11 @@ function getInitTheme() {
     }   
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
+
+function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (themeToggle) {
+        themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+    }
+}
