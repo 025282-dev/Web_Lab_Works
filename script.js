@@ -30,4 +30,23 @@ if (themeToggle) {
 }
 }
 
+Function initcatalog() {
+    const catalogGrid = document.querySelector('.catalog-grid');
+    if (!catalogGrid) return;
+
+    const sidebar = document.querySelector('.sidebar');
+    const searchInput = document.getElementById('search-input');
+    const modal = document.getElementById('service-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalPrice = document.getElementById('modal-price');
+    const closeModalButton = document.getElementById('close-modal');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let services = []
+    let currentcategory = urlParams.get('category') || 'all';
+    let searchquery = urlParams.get('q') || '';
+    let isloading = false;
+    let lastfocusedelement = null;
+    let fetchcontroller = null;
 initTheme();
