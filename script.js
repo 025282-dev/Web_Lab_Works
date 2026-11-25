@@ -62,5 +62,18 @@ function initcatalog() {
     filterLinks.forEach((link) => {
             link.classList.toggle('active', link.dataset.category === currentCategory);
         });
+    function syncUrl() {
+        const params = new URLSearchParams();
+        if (currentCategory && currentCategory !== 'all') {
+            params.set('category', currentCategory);
+        }
+        if (searchquery.trim() !== '') {
+            params.set('q', searchquery.trim());
+        }
+        const queryString = params.toString();
+        const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
+        window.history.replaceState({}, '', newUrl);
     }
+}
 initTheme();
+initCatalog();
