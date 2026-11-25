@@ -27,7 +27,7 @@ if (themeToggle) {
         applyTheme(newTheme);
         localStorage.setItem('theme', newTheme);
     });
-
+}
 }
 
 initTheme();
