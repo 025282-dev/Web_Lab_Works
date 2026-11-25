@@ -6,6 +6,7 @@
     <title>Про нас - Вебпроект</title>
     <link rel="stylesheet" href="token.css">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
   <header>
@@ -24,7 +25,7 @@
         <main id="main-content">
         <h1>Перелік послуг</h1>
         <section class="catalog-grid" aria-label="список послуг">
-            <article class ="card">
+
                 <h2>Розробка вебсайту</h2>
                 <p>Ми пропонуємо професійну розробку вебсайтів будь-якої складності, від простих лендингів до складних вебдодатків.</p>
     <span class="price">Ціна: 5000 грн</span> 
@@ -68,6 +69,8 @@
         </main>
         <aside class="sidebar">
             <h2>фільтри та категорії</h2>
+            <label for="search-input">Пошук послуги:</label>
+            <input type="search" id="search-input" placeholder="Назва або опис...">
             <ul>
                 <li><a href="#" data-category="all" class="filter-link active">Усі послуги</a></li>
                 <li><a href="#" data-category="web" class="filter-link">Веброзробка</a></li>
@@ -87,6 +90,5 @@
     <footer>
         <p>&copy; 2026 Мій веб-проект. Всі права захищені.</p>
     </footer>
- <script src="script.js"></script>
 </body>
 </html>
