@@ -30,11 +30,11 @@ if (themeToggle) {
 }
 }
 
-Function initcatalog() {
+function initcatalog() {
     const catalogGrid = document.querySelector('.catalog-grid');
     if (!catalogGrid) return;
 
-    const sidebar = document.querySelector('.sidebar');
+    const sidebarlist = document.querySelector('.sidebar');
     const searchInput = document.getElementById('search-input');
     const modal = document.getElementById('service-modal');
     const modalTitle = document.getElementById('modal-title');
@@ -44,9 +44,23 @@ Function initcatalog() {
 
     const urlParams = new URLSearchParams(window.location.search);
     let services = []
-    let currentcategory = urlParams.get('category') || 'all';
+    let currentCategory = urlParams.get('category') || 'all';
     let searchquery = urlParams.get('q') || '';
     let isloading = false;
     let lastfocusedelement = null;
     let fetchcontroller = null;
+
+    if (searchInput) {
+        searchInput.value = searchquery;
+    }
+    if (sidebarlist) { 
+        const filterLinks = sidebarlist.querySelectorAll('.filter-link');
+        const hasMatch = Array.from(filterLinks).some(link => link.dataset.category === currentCategory);
+        if (!hasMatch) {
+            currentCategory = 'all';
+        }
+    filterLinks.forEach((link) => {
+            link.classList.toggle('active', link.dataset.category === currentCategory);
+        });
+    }
 initTheme();
