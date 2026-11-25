@@ -1,6 +1,6 @@
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.documentElement;
+    const root = document.documentElement;
 
 function getInitTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -17,3 +17,17 @@ function applyTheme(theme) {
         themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
     }
 }
+
+applyTheme(getInitTheme());
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+}
+
+initTheme();
