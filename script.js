@@ -98,24 +98,23 @@ function initCatalog() {
         catalogGrid.appendChild(box);
     }
 
-    function renderServices() {
-        if (services.length === 0) {
-            renderState('Сервіси не знайдено', { isError: true, onRetry: () => fetchServices() });
-            return;
-        }
+function renderServices(list) {
+            if (list.length === 0) {
+                renderState('За вашим запитом послуг не знайдено.');
+                return;
+            }
 
         const fragment = document.createDocumentFragment();
         
-        services.forEach((service) => {
+        list.forEach((service) => {
             const card = document.createElement('article');
-            card.className = 'service-card';
+            card.className = 'card';
 
             const title = document.createElement('h2');
             title.textContent = service.title;
 
             const desc = document.createElement('p');
-            desc.textContent = service.description;
-
+            desc.textContent = service.shortDesc;
             const price = document.createElement('span');
             price.className = 'price';
             price.textContent = `Ціна: ${service.price}`;
@@ -135,7 +134,7 @@ function initCatalog() {
 
     function applyFilters() {
         syncUrl();
-
+        if (isloading) return;
         const query = searchquery.trim().toLowerCase();
         const filtered = services.filter((item) => {
             const matchesCategory =
@@ -150,8 +149,6 @@ function initCatalog() {
 
         renderServices(filtered);
     }
-
-    applyFilters();
 
     async function fetchServices() {
         if (fetchcontroller) { fetchcontroller.abort(); }
@@ -171,23 +168,27 @@ function initCatalog() {
         applyFilters();
         } catch (error) {
           if (error.name === 'AbortError') return; // Попередній запит скасовано штатно
-            isLoading = false;
+            isloading = false;
             renderState('Не вдалося завантажити каталог. Перевірте підключення до мережі.', {
                 isError: true,
-                onRetry: loadServices,
+                onRetry: fetchServices,
             });
+        }
+    }
           function openModal(service, triggerElement) {
             if (!modal) return;
             lastfocusedelement = triggerElement;
             modalTitle.textContent = service.title;
-            modalDescription.textContent = service.description;
+            modalDescription.textContent = service.fullDesc;
             modalPrice.textContent = `Ціна: ${service.price}`;
             modal.showModal();
         }
         if (modal) {
             if (closeModalButton) {
                 closeModalButton.addEventListener('click', () => {
-                    modal.close();a
+                    modal.close();
+
+            });
     }
      modal.addEventListener('click', (event) => {
             const rect = modal.getBoundingClientRect();
@@ -201,7 +202,7 @@ function initCatalog() {
                 modal.close();
             }
         });
-    modal.addEventListener ('close ', (event) => {
+    modal.addEventListener ('close', (event) => {
         if (lastfocusedelement) {
             lastfocusedelement.focus();
             lastfocusedelement = null;
@@ -210,7 +211,7 @@ function initCatalog() {
     }
 
     catalogGrid.addEventListener('click', (event) => {
-        const btn = event.target.closest('.details-btn');
+        const btn = event.target.closest('.details-button');
         if (!btn) return;
 
         const service = services.find((item) => String(item.id) === btn.dataset.id);
@@ -219,13 +220,13 @@ function initCatalog() {
         }
     });
 
-    if (sidebarList) {
-        sidebarList.addEventListener('click', (event) => {
+    if (sidebarlist) {
+        sidebarlist.addEventListener('click', (event) => {
             const link = event.target.closest('.filter-link');
             if (!link) return;
 
             event.preventDefault();
-            sidebarList.querySelectorAll('.filter-link').forEach((item) => {
+            sidebarlist.querySelectorAll('.filter-link').forEach((item) => {
                 item.classList.remove('active');
             });
             link.classList.add('active');
@@ -237,12 +238,12 @@ function initCatalog() {
 
     if (searchInput) {
         searchInput.addEventListener('input', (event) => {
-            searchQuery = event.target.value;
+            searchquery = event.target.value;
             applyFilters();
         });
     }
 
-    loadServices();
+    fetchServices();
 }
     initTheme();
     initCatalog();
