@@ -176,7 +176,18 @@ function initCatalog() {
                 isError: true,
                 onRetry: loadServices,
             });
+          function openModal(service, triggerElement) {
+            if (!modal) return;
+            lastfocusedelement = triggerElement;
+            modalTitle.textContent = service.title;
+            modalDescription.textContent = service.description;
+            modalPrice.textContent = `Ціна: ${service.price}`;
+            modal.showModal();
         }
+        if (modal) {
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', () => {
+                    modal.close();a
     }
 
     initTheme();
