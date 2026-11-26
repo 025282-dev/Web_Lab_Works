@@ -95,7 +95,43 @@ function initCatalog() {
 
         catalogGrid.appendChild(box);
     }
-}
-initTheme();
-initCatalog();
+
+    function renderServices() {
+        if (services.length === 0) {
+            renderState('Сервіси не знайдено', { isError: true, onRetry: () => fetchServices() });
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        
+        list.forEach((service) => { 
+            const card = document.createElement('article');
+            card.className = 'service-card';
+
+            const title = document.createElement('h2');
+            title.textContent = service.title;
+
+            const desc = document.createElement('p');
+            desc.textContent = service.description;
+
+            const price = document.createElement('span');
+            price.className = 'price';
+            price.textContent = `Ціна: ${service.price}`;
+
+            const detailsButton = document.createElement('button');
+            detailsButton.type = 'button';
+            detailsButton.className = 'details-button';
+            detailsButton.dataset.id = String(service.id);
+            detailsButton.textContent = 'Детальніше';
+            card.append(title, desc, price, detailsButton);
+            fragment.appendChild(card); 
+
+            });
+
+        catalogGrid.replaceChildren(fragment);
+          }
+
+    }
+    initTheme();
+    initCatalog();
 }
