@@ -74,8 +74,9 @@ function initCatalog() {
         const queryString = params.toString();
         const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
         window.history.replaceState({}, '', newUrl);
+    }
 
-        function renderState(message,{ isError = false, onRetry = null } = {}) {
+    function renderState(message, { isError = false, onRetry = null } = {}) {
             catalogGrid.replaceChildren();
 
             const box = document.createElement('div');
@@ -85,7 +86,8 @@ function initCatalog() {
             text.textContent = message;
             box.appendChild(text);
 
-            if (onRetry) { retryButton = document.createElement('button');
+            if (onRetry) {
+                const retryButton = document.createElement('button');
                 retryButton.type = 'button';
                 retryButton.textContent = 'Спробувати ще раз';
                 retryButton.addEventListener('click', onRetry);
@@ -104,7 +106,7 @@ function initCatalog() {
 
         const fragment = document.createDocumentFragment();
         
-        list.forEach((service) => { 
+        services.forEach((service) => {
             const card = document.createElement('article');
             card.className = 'service-card';
 
@@ -126,12 +128,31 @@ function initCatalog() {
             card.append(title, desc, price, detailsButton);
             fragment.appendChild(card); 
 
-            });
+        });
 
         catalogGrid.replaceChildren(fragment);
           }
 
+    function applyFilters() {
+        syncUrl();
+
+        const query = searchquery.trim().toLowerCase();
+        const filtered = services.filter((item) => {
+            const matchesCategory =
+                currentCategory === 'all' || item.category === currentCategory;
+            const matchesText =
+                query === '' ||
+                item.title.toLowerCase().includes(query) ||
+                (item.shortDesc || item.description || '').toLowerCase().includes(query);
+
+            return matchesCategory && matchesText;
+        });
+
+        renderServices(filtered);
     }
+
+    applyFilters();
+}
+
     initTheme();
     initCatalog();
-}
