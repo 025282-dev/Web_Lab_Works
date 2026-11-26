@@ -152,7 +152,32 @@ function initCatalog() {
     }
 
     applyFilters();
-}
+
+    async function fetchServices() {
+        if (fetchcontroller) { fetchcontroller.abort(); }
+
+        fetchcontroller = new AbortController();
+        isloading = true;
+        renderState('Завантаження послуг...');
+
+        try {
+            const response = await fetch('services.json', { signal: fetchcontroller.signal });
+            if (!response.ok) { 
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        const data = await response.json(); 
+        services = Array.isArray(data) ? data : [];
+        isloading = false;
+        applyFilters();
+        } catch (error) {
+          if (error.name === 'AbortError') return; // Попередній запит скасовано штатно
+            isLoading = false;
+            renderState('Не вдалося завантажити каталог. Перевірте підключення до мережі.', {
+                isError: true,
+                onRetry: loadServices,
+            });
+        }
+    }
 
     initTheme();
     initCatalog();
