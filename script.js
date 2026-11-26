@@ -208,6 +208,41 @@ function initCatalog() {
         }
         });
     }
-    
+
+    catalogGrid.addEventListener('click', (event) => {
+        const btn = event.target.closest('.details-btn');
+        if (!btn) return;
+
+        const service = services.find((item) => String(item.id) === btn.dataset.id);
+        if (service) {
+            openModal(service, btn);
+        }
+    });
+
+    if (sidebarList) {
+        sidebarList.addEventListener('click', (event) => {
+            const link = event.target.closest('.filter-link');
+            if (!link) return;
+
+            event.preventDefault();
+            sidebarList.querySelectorAll('.filter-link').forEach((item) => {
+                item.classList.remove('active');
+            });
+            link.classList.add('active');
+
+            currentCategory = link.dataset.category || 'all';
+            applyFilters();
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+            searchQuery = event.target.value;
+            applyFilters();
+        });
+    }
+
+    loadServices();
+}
     initTheme();
     initCatalog();
