@@ -30,7 +30,7 @@ if (themeToggle) {
 }
 }
 
-function initcatalog() {
+function initCatalog() {
     const catalogGrid = document.querySelector('.catalog-grid');
     if (!catalogGrid) return;
 
@@ -62,6 +62,7 @@ function initcatalog() {
     filterLinks.forEach((link) => {
             link.classList.toggle('active', link.dataset.category === currentCategory);
         });
+    }
     function syncUrl() {
         const params = new URLSearchParams();
         if (currentCategory && currentCategory !== 'all') {
@@ -73,7 +74,28 @@ function initcatalog() {
         const queryString = params.toString();
         const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
         window.history.replaceState({}, '', newUrl);
+
+        function renderState(message,{ isError = false, onRetry = null } = {}) {
+            catalogGrid.replaceChildren();
+
+            const box = document.createElement('div');
+            box.className = isError ? 'status-msg status-error' : 'status-msg';
+
+            const text = document.createElement('p');
+            text.textContent = message;
+            box.appendChild(text);
+
+            if (onRetry) { retryButton = document.createElement('button');
+                retryButton.type = 'button';
+                retryButton.textContent = 'Спробувати ще раз';
+                retryButton.addEventListener('click', onRetry);
+                box.appendChild(retryButton);
+            
+            }
+
+        catalogGrid.appendChild(box);
     }
 }
 initTheme();
 initCatalog();
+}
