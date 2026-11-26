@@ -98,15 +98,15 @@ function initCatalog() {
         catalogGrid.appendChild(box);
     }
 
-    function renderServices() {
-        if (services.length === 0) {
+    function renderServices(items = services) {
+        if (items.length === 0) {
             renderState('Сервіси не знайдено', { isError: true, onRetry: () => fetchServices() });
             return;
         }
 
         const fragment = document.createDocumentFragment();
         
-        services.forEach((service) => {
+        items.forEach((service) => {
             const card = document.createElement('article');
             card.className = 'service-card';
 
@@ -151,8 +151,6 @@ function initCatalog() {
         renderServices(filtered);
     }
 
-    applyFilters();
-
     async function fetchServices() {
         if (fetchcontroller) { fetchcontroller.abort(); }
 
@@ -165,30 +163,65 @@ function initCatalog() {
             if (!response.ok) { 
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-        const data = await response.json(); 
-        services = Array.isArray(data) ? data : [];
-        isloading = false;
-        applyFilters();
+            const data = await response.json();
+            services = Array.isArray(data) ? data : [];
+            isloading = false;
+            applyFilters();
         } catch (error) {
-          if (error.name === 'AbortError') return; // Попередній запит скасовано штатно
-            isLoading = false;
+            if (error.name === 'AbortError') return;
+            isloading = false;
             renderState('Не вдалося завантажити каталог. Перевірте підключення до мережі.', {
                 isError: true,
-                onRetry: loadServices,
+                onRetry: fetchServices,
             });
-          function openModal(service, triggerElement) {
-            if (!modal) return;
-            lastfocusedelement = triggerElement;
-            modalTitle.textContent = service.title;
-            modalDescription.textContent = service.description;
-            modalPrice.textContent = `Ціна: ${service.price}`;
-            modal.showModal();
         }
-        if (modal) {
-            if (closeModalButton) {
-                closeModalButton.addEventListener('click', () => {
-                    modal.close();a
     }
 
-    initTheme();
-    initCatalog();
+    function openModal(service, triggerElement) {
+        if (!modal) return;
+        lastfocusedelement = triggerElement;
+        modalTitle.textContent = service.title;
+        modalDescription.textContent = service.description;
+        modalPrice.textContent = `Ціна: ${service.price}`;
+        modal.showModal();
+    }
+
+    if (catalogGrid) {
+        catalogGrid.addEventListener('click', (event) => {
+            const button = event.target.closest('.details-button');
+            if (!button) return;
+            const service = services.find((item) => String(item.id) === button.dataset.id);
+            if (service) openModal(service, button);
+        });
+    }
+
+    if (modal) {
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', () => modal.close());
+        }
+        modal.addEventListener('close', () => {
+            if (lastfocusedelement) lastfocusedelement.focus();
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            searchquery = searchInput.value;
+            applyFilters();
+        });
+    }
+
+    if (sidebarlist) {
+        sidebarlist.addEventListener('click', (event) => {
+            const link = event.target.closest('.filter-link');
+            if (!link || !sidebarlist.contains(link)) return;
+            event.preventDefault();
+            currentCategory = link.dataset.category || 'all';
+            sidebarlist.querySelectorAll('.filter-link').forEach((item) => {
+                item.classList.toggle('active', item === link);
+            });
+            applyFilters();
+        });
+    }
+
+    fetchServices();
